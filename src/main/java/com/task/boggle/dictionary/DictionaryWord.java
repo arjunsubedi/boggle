@@ -1,4 +1,4 @@
-package com.task.buggle.dictionary;
+package com.task.boggle.dictionary;
 
 public class DictionaryWord {
     DictionaryWord[] Child = new DictionaryWord[26];

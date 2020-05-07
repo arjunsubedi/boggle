@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.task</groupId>
-    <artifactId>buggle</artifactId>
+    <artifactId>boggle</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>buggle</name>
+    <name>boggle</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

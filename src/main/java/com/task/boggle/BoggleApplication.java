@@ -1,4 +1,4 @@
-package com.task.buggle;
+package com.task.boggle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

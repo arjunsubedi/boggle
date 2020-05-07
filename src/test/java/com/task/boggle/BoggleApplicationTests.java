@@ -1,10 +1,10 @@
-package com.task.buggle;
+package com.task.boggle;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BuggleApplicationTests {
+class BoggleApplicationTests {
 
     @Test
     void contextLoads() {

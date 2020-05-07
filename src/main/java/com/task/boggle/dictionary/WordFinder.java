@@ -1,4 +1,4 @@
-package com.task.buggle.dictionary;
+package com.task.boggle.dictionary;
 
 import java.util.List;
 
