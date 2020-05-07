@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 public class GameController {
     @GetMapping
     public GetBoardResponse getBoard(HttpSession session){
+
         return new GetBoardResponse;
     }
 }
