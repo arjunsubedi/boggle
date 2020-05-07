@@ -1,5 +1,6 @@
 package com.task.boggle;
 
+import com.task.boggle.dictionary.WordFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +21,13 @@ public class BoggleApplication implements CommandLineRunner {
     private static Logger logger = LoggerFactory.getLogger(BoggleApplication.class);
     private static final String FILE_NAME="words_alpha.txt";
 
+    private final WordFinder wordFinder;
+
+    public BoggleApplication(WordFinder wordFinder) {
+        this.wordFinder = wordFinder;
+    }
+
+
     public static void main(String[] args) {
         SpringApplication.run(BoggleApplication.class, args);
     }
@@ -29,6 +37,7 @@ public class BoggleApplication implements CommandLineRunner {
        List<String> wordList = Files.readAllLines(Paths.get(new File(FILE_NAME).getAbsolutePath()), StandardCharsets.UTF_8);
        wordList = wordList.stream().filter(word ->(word.length() > 2 && word.length() < 9)).map(String::toUpperCase).collect(Collectors.toList());
        logger.info("Total dictionary words: {}", wordList.size());
+       wordFinder.setWordList(wordList);
     }
 
 }
