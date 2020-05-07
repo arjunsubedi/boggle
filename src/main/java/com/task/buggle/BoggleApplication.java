@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,12 +15,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
-public class BuggleApplication implements CommandLineRunner {
+public class BoggleApplication implements CommandLineRunner {
 
-    private static Logger logger = LoggerFactory.getLogger(BuggleApplication.class);
+    private static Logger logger = LoggerFactory.getLogger(BoggleApplication.class);
     private static final String FILE_NAME="words_alpha.txt";
+
     public static void main(String[] args) {
-        SpringApplication.run(BuggleApplication.class, args);
+        SpringApplication.run(BoggleApplication.class, args);
     }
 
     @Override
