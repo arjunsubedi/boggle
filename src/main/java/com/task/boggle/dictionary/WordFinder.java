@@ -23,4 +23,7 @@ public class WordFinder {
         }
 
     }
+
+    public List<String> findPossibleWord(char[][] puzzel) {
+    }
 }
