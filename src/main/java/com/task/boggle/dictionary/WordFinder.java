@@ -42,6 +42,33 @@ public class WordFinder {
         return possibleWordList;
     }
 
-    private void searchPossibleWord(DictionaryWord dictionaryWord, char[][] puzzel, int i, int j, boolean[][] used, String toString, List<String> possibleWordList) {
+    private void searchPossibleWord(DictionaryWord dictionaryWord, char[][] boggle, int i, int j, boolean[][] used, String str, List<String> possibleWordList) {
+        if(root.end)
+            possibleWordList.add(str);
+        for (int K = 0; K < 26; K++) {
+            if (root.Child[K] != null) {
+                char ch = (char) (K + 'A');
+                if (isPossible(i + 1, j + 1, used) && boggle[i + 1][j + 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i + 1, j + 1, used, str + ch, possibleWordList);
+                if (isPossible(i, j + 1, used) && boggle[i][j + 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i, j + 1, used, str + ch, possibleWordList);
+                if (isPossible(i - 1, j + 1, used) && boggle[i - 1][j + 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i - 1, j + 1, used, str + ch, possibleWordList);
+                if (isPossible(i + 1, j, used) && boggle[i + 1][j] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i + 1, j, used, str + ch, possibleWordList);
+                if (isPossible(i + 1, j - 1, used) && boggle[i + 1][j - 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i + 1, j - 1, used, str + ch, possibleWordList);
+                if (isPossible(i, j - 1, used) && boggle[i][j - 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i, j - 1, used, str + ch, possibleWordList);
+                if (isPossible(i - 1, j - 1, used) && boggle[i - 1][j - 1] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i - 1, j - 1, used, str + ch, possibleWordList);
+                if (isPossible(i - 1, j, used) && boggle[i - 1][j] == ch)
+                    searchPossibleWord(root.Child[K], boggle, i - 1, j, used, str + ch, possibleWordList);
+            }
+        }
+        used[i][j] = false;
+    }
+    boolean isPossible(int i, int j, boolean[][] used) {
+        return (i >= 0 && i < 4 && j >= 0 && j < 4 && !used[i][j]);
     }
 }

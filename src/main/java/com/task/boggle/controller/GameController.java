@@ -24,6 +24,6 @@ public class GameController {
         Board board = boardService.getRandomBoard();
         session.setAttribute("currentBoard", board);
         session.setAttribute("score",0);
-        return new GetBoardResponse();
+        return new GetBoardResponse(board.getPuzzel());
     }
 }
