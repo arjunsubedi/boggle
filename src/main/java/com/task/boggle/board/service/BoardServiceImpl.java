@@ -1,6 +1,7 @@
 package com.task.boggle.board.service;
 
 import com.task.boggle.board.Board;
+import com.task.boggle.dictionary.DictionaryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,11 +16,18 @@ import java.util.Random;
 
 public class BoardServiceImpl implements BoardService{
     Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
+
+    private final DictionaryService dictionaryService;
+
+    public BoardServiceImpl(DictionaryService dictionaryService) {
+        this.dictionaryService = dictionaryService;
+    }
+
     @Override
     public Board getRandomBoard() {
         Board board = new Board();
         board.setPuzzel(getPuzzel());
-
+        board.setPossibleWord(dictionaryService.getPossibleWord(board.getPuzzel()));
         return board;
     }
 
