@@ -19,6 +19,7 @@ public class BoardServiceImpl implements BoardService{
     public Board getRandomBoard() {
         Board board = new Board();
         board.setPuzzel(getPuzzel());
+
         return board;
     }
 
