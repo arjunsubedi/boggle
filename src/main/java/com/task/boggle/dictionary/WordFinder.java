@@ -1,5 +1,6 @@
 package com.task.boggle.dictionary;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordFinder {
@@ -25,5 +26,22 @@ public class WordFinder {
     }
 
     public List<String> findPossibleWord(char[][] puzzel) {
+        List<String> possibleWordList = new ArrayList<>();
+        boolean[][] used = new boolean[4][4];
+        DictionaryWord pChild = root;
+        StringBuilder str = new StringBuilder();
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 4; j++){
+                if(pChild.Child[(puzzel[i][j]) - 'A'] !=null){
+                    str.append(puzzel[i][j]);
+                    searchPossibleWord(pChild.Child[(puzzel[i][j]) - 'A'], puzzel, i, j, used, str.toString(), possibleWordList);
+                    str = new StringBuilder();
+                }
+            }
+        }
+        return possibleWordList;
+    }
+
+    private void searchPossibleWord(DictionaryWord dictionaryWord, char[][] puzzel, int i, int j, boolean[][] used, String toString, List<String> possibleWordList) {
     }
 }
