@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DictionaryServiceImpl implements DictionaryService{
@@ -20,7 +21,6 @@ public class DictionaryServiceImpl implements DictionaryService{
     public List<String> getPossibleWord(char[][] puzzel) {
         logger.info("Getting all possible word");
         List<String> possibleWord = wordFinder.findPossibleWord(puzzel);
-
-        return null;
+        return possibleWord.stream().distinct().sorted().collect(Collectors.toList());
     }
 }

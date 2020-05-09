@@ -1,0 +1,4 @@
+T,C,C,B
+A,B,A,A
+N,W,L,L
+T,E,S,T
