@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/")
 public class GameController {
     private final BoardService boardService;
 

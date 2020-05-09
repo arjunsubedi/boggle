@@ -1,8 +1,11 @@
 package com.task.boggle.dictionary;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class WordFinder {
 
     private static DictionaryWord root;

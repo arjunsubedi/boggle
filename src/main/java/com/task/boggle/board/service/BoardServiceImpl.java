@@ -4,6 +4,7 @@ import com.task.boggle.board.Board;
 import com.task.boggle.dictionary.DictionaryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+@Service
 public class BoardServiceImpl implements BoardService{
     Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 
