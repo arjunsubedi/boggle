@@ -26,4 +26,6 @@ public class GameController {
         session.setAttribute("score",0);
         return new GetBoardResponse(board.getPuzzel());
     }
+
+
 }
