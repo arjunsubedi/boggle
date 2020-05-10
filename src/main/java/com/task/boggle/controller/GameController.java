@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/dashboard")
 public class GameController {
     private final BoardService boardService;
 
