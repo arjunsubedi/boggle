@@ -8,5 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
     @GetMapping("/")
-    public ModelAndView getHome(Model model){return new ModelAndView("index");}
+    public ModelAndView getHome(Model model){
+        return new ModelAndView("index");
+    }
 }
