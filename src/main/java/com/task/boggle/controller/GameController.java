@@ -31,9 +31,7 @@ public class GameController {
     public ValidateWordResponse validateWord(@PathVariable String word, HttpSession session){
         Board board = (Board) session.getAttribute("currentBoard");
         int score = (int) session.getAttribute("score");
-        if(board.getPossibleWord().contains(word)){
-            score += calculatePoint(word);
-        }
+        score += calculatePoint(word);
         session.setAttribute("score", score);
         return new ValidateWordResponse(board.getPossibleWord().contains(word), score);
     }

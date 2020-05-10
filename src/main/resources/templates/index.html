@@ -21,6 +21,7 @@
 </head>
 <body>
 <div aria-colspan="6">
+    Your Score:<input type="text" disabled id="score" name="score" />
     <table id="table">
         <thead>
         <tr>
@@ -35,23 +36,90 @@
     </table>
 
 </div>
+<div>
+    <div id="textFieldDiv" style="visibility: visible">
+        WRITE WORD AND PRESS ENTER KEY FOR EVERY WORDS!!<br />
+        <input type="text" id="word" name="word" />
+    </div>
+    <table align="right">
+        <thead>
+        <tr>
+            <th>Word length</th>
+            <th>Point</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>3,4</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>8+</td>
+            <td>11</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
+<script>
+    function  hideDiv() {
+        document.getElementById("textFieldDiv").style.visibility="hidden";
+    }
+    setTimeout("hideDiv()", 120000);
+</script>
 <script>
     $(document).ready(function () {
         $.get("dashboard").then(
             (data) =>{
-                console.log(puzzel)
+                console.log(data.puzzel)
             const puzzle = Object.values(data.puzzel);
                 for(i=0;i<puzzle.length;i++){
                     const puzzle1=puzzle[i];
-                    var $row= $('#table').find("tbody").append("tr /").childern("tr:eq("+i+")");
+                    var $row = $('#table').find("tbody").append("<tr />").children("tr:eq("+i+")");
+
                     for(j=0;j<puzzle1.length;j++){
-                        $row.append("<td>"+ puzzle1[j] +"</td>")
+                        console.log("the changes is "+j)
+                        $row.append("<td>"+ puzzle1[j] +"</td>");
+
                     }
                 }
         $('#table').trigger('updateAll')
     },
         (err) => console.log(err)
-    })
+        );
+    });
+</script>
+<script>
+    $("#word").keypress(function(e) {
+
+        //Event.which == 1 mouse click left and event. which == 13 is enter key.
+        if (e.which == 13 || e.which == 1) {
+            // alert('You pressed enter or clicked left mouse');
+            var word1=$("#word").val();
+            console.log(word1);
+            $.get("dashboard/word/"+word1).then(
+                (data) => {
+                $('#score').val(data.score);
+            $('#word').val('');
+
+            $('#word').trigger('updateAll');
+
+        },
+            (err) => console.log(err)
+        );
+        }
+    });
 </script>
 </html>
