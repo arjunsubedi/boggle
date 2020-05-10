@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/jquery-1.12.4.min.js}"></script>
+
+    <style>
+        table {
+            margin: 25px 0;
+            width: 200px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
 </head>
 <body>
+<div aria-colspan="6">
+    <table id="table">
+        <thead>
+        <tr>
+            <!--<th></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <!--<td></td>-->
+        </tr>
+        </tbody>
+    </table>
 
+</div>
 </body>
+<script>
+    $(document).ready(function () {
+        $.get("dashboard").then(
+            (data) =>{
+                console.log(puzzel)
+            const puzzle = Object.values(data.puzzel);
+                for(i=0;i<puzzle.length;i++){
+                    const puzzle1=puzzle[i];
+                    var $row= $('#table').find("tbody").append("tr /").childern("tr:eq("+i+")");
+                    for(j=0;j<puzzle1.length;j++){
+                        $row.append("<td>"+ puzzle1[j] +"</td>")
+                    }
+                }
+        $('#table').trigger('updateAll')
+    },
+        (err) => console.log(err)
+    })
+</script>
 </html>
