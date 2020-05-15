@@ -12,27 +12,6 @@ public class WordFinder {
 
     private static Logger logger = LoggerFactory.getLogger(WordFinder.class);
     private static DictionaryWord root;
-    public void setWordList(List<String> wordList) {
-        root = new DictionaryWord();
-        for(String word: wordList) insert(root,word);
-    }
-
-    void insert(DictionaryWord root, String Key) {
-        int n = Key.length();
-        DictionaryWord pChild = root;
-        for(int i=0; i<n; i++){
-            int index = Key.charAt(i) - 'A';
-            if(index > 25){
-               logger.info(Key);
-            }
-            if(pChild.Child[index] == null){
-                pChild.Child[index] = new DictionaryWord();
-            pChild =pChild.Child[index];
-            }
-            pChild.end = true;
-        }
-
-    }
 
     public List<String> findPossibleWord(char[][] puzzel) {
         List<String> possibleWordList = new ArrayList<>();
@@ -51,11 +30,11 @@ public class WordFinder {
         return possibleWordList;
     }
 
-    private void searchPossibleWord(DictionaryWord dictionaryWord, char[][] boggle, int i, int j, boolean[][] used, String str, List<String> possibleWordList) {
+    private void searchPossibleWord(DictionaryWord root, char[][] boggle, int i, int j, boolean[][] used, String str, List<String> possibleWordList) {
         if(root.end)
             possibleWordList.add(str);
         if(isPossible(i, j, used)){
-            used[i][j] =true;
+            used[i][j] = true;
             for (int K = 0; K < 26; K++) {
                 if (root.Child[K] != null) {
                     char ch = (char) (K + 'A');
@@ -84,4 +63,26 @@ public class WordFinder {
     boolean isPossible(int i, int j, boolean[][] used) {
         return (i >= 0 && i < 4 && j >= 0 && j < 4 && !used[i][j]);
     }
+    public void setWordList(List<String> wordList) {
+        root = new DictionaryWord();
+        for(String word: wordList) insert(root,word);
+    }
+
+    void insert(DictionaryWord root, String Key) {
+        int n = Key.length();
+        DictionaryWord pChild = root;
+        for(int i=0; i<n; i++){
+            int index = Key.charAt(i) - 'A';
+            if(index > 25){
+                logger.info(Key);
+            }
+            if(pChild.Child[index] == null)
+                pChild.Child[index] = new DictionaryWord();
+                pChild =pChild.Child[index];
+
+        }
+        pChild.end = true;
+
+    }
+
 }

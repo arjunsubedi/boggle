@@ -4,12 +4,13 @@ public class DictionaryWord {
     DictionaryWord[] Child = new DictionaryWord[26];
 
     boolean end;
+
     public DictionaryWord() {
         end = false;
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 26; i++)
             Child[i] = null;
-        }
     }
+
     public DictionaryWord[] getChild() {
         return Child;
     }
@@ -17,5 +18,4 @@ public class DictionaryWord {
     public boolean isEnd() {
         return end;
     }
-
 }
