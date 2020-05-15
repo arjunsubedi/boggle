@@ -1,5 +1,7 @@
 package com.task.boggle.dictionary;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,18 +10,22 @@ import java.util.List;
 @Component
 public class WordFinder {
 
+    private static Logger logger = LoggerFactory.getLogger(WordFinder.class);
     private static DictionaryWord root;
     public void setWordList(List<String> wordList) {
         root = new DictionaryWord();
         for(String word: wordList) insert(root,word);
     }
 
-    private void insert(DictionaryWord root, String Key) {
+    void insert(DictionaryWord root, String Key) {
         int n = Key.length();
         DictionaryWord pChild = root;
         for(int i=0; i<n; i++){
             int index = Key.charAt(i) - 'A';
-            if(pChild.Child == null){
+            if(index > 25){
+               logger.info(Key);
+            }
+            if(pChild.Child[index] == null){
                 pChild.Child[index] = new DictionaryWord();
             pChild =pChild.Child[index];
             }
@@ -35,7 +41,7 @@ public class WordFinder {
         StringBuilder str = new StringBuilder();
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 4; j++){
-                if(pChild.Child[(puzzel[i][j]) - 'A'] !=null){
+                if(pChild.Child[(puzzel[i][j]) - 'A'] != null){
                     str.append(puzzel[i][j]);
                     searchPossibleWord(pChild.Child[(puzzel[i][j]) - 'A'], puzzel, i, j, used, str.toString(), possibleWordList);
                     str = new StringBuilder();
