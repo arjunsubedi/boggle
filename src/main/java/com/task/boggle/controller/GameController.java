@@ -31,11 +31,12 @@ public class GameController {
     public ValidateWordResponse validateWord(@PathVariable String word, HttpSession session){
         Board board = (Board) session.getAttribute("currentBoard");
         int score = (int) session.getAttribute("score");
-        if(board.getPossibleWord().contains(word)){
+        String word1=word.toUpperCase();
+        if(board.getPossibleWord().contains(word1)){
             score += calculatePoint(word);
         }
         session.setAttribute("score", score);
-        return new ValidateWordResponse(board.getPossibleWord().contains(word), score);
+        return new ValidateWordResponse(board.getPossibleWord().contains(word1), score);
     }
 
     private int calculatePoint(String word) {
